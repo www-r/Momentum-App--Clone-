@@ -7,14 +7,15 @@ const greeting = document.querySelector("#greeting");
 const HIDDEN_CLASSNAME = "hidden";
 const USERNAME_KEY = "username"
 
+//browser가 function의 첫번째 argument에게 어떤 일이 일어났는지에 대한 정보의 object를 준다.
 function onLoginSubmit(event){
     event.preventDefault();
-    const username = loginInput.value;
     loginForm.classList.add(HIDDEN_CLASSNAME);
-    localStorage.setItem(USERNAME_KEY, username)
-    paintGreetings(username);
+    localStorage.setItem(USERNAME_KEY, loginInput.value);
+    paintGreetings();
 }
-function paintGreetings(username){
+function paintGreetings(){
+    const username = localStorage.getItem(USERNAME_KEY);
     greeting.innerText = `Hello ${username}`;
     greeting.classList.remove(HIDDEN_CLASSNAME);
     
@@ -28,7 +29,6 @@ if(savedUserName===null){
     loginForm.addEventListener("submit", onLoginSubmit );
 
 } else {
-    greeting.innerText = `Hello ${savedUserName}`;
-    greeting.classList.remove(HIDDEN_CLASSNAME);
+   paintGreetings();
     
 }
