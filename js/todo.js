@@ -6,9 +6,9 @@ const todoList = document.getElementById("todo-list");
 const todos = [];
 
 function saveTodos(){
-    localStorage.setItem("todos",todos) //local storage can only save strings
-}
-
+    localStorage.setItem("todos",JSON.stringify(todos)) 
+ //local storage can only save strings=> save into a form of array (not real array)
+}//JSON stringify => take JS object or an array and make into a strings.
 function deleteTodo(event){
     const li = event.target.parentElement;
     li.remove();
